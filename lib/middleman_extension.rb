@@ -1,1 +1,1 @@
-require 'middleman3-sassc'
+require 'middleman4-sprockets3-sassc'
