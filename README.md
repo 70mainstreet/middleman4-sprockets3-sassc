@@ -1,28 +1,20 @@
-# SassC for Middleman 3
+# SassC for Middleman 4 and Sprockets 3
 
-This gem lets you use SassC with Middleman 3 by monkey patching relevant sass tilt templates.
-(Middleman 4 supports SassC out of box.)
+This gem lets you use SassC with Middleman 4 and Sprockets 3 by monkey patching classes. (Middleman 4 without Sprockets
+or with Sprockets 4 will support SassC out of box.)
 
 ## Installation
 
 In `Gemfile`:
 ```ruby
-gem 'middleman3-sassc', '~> 0.0.1'
+gem 'middleman4-sprockets3-sassc', '~> 0.0.1'
 ```
 
 In `config.rb`:
 
 ```ruby
-activate :sassc
+activate :sprockets3_sassc
 ```
-
-## How do I know if it’s SassC compiling my sass files?
-
-There are a few ways to tell:
-
-* Sass compilation will be noticeably faster, especially for large projects.
-* SassC does not support Compass, so `@import "compass"` will fail.
-* SassC currently only supports Sass syntax up to 3.2. Using new features will fail.
 
 ## License
 
