@@ -31,22 +31,28 @@ module ::Sprockets::SassC
 end
 
 class ::Middleman::Sprockets::Extension
-  def use_sassc_if_available
-    require 'sassc-rails'
-    if defined?(::SassC::Rails)
-      environment.register_engine '.sass', ::Sprockets::SassC::SassProcessor
-      environment.register_engine '.scss', ::Sprockets::SassC::ScssProcessor
-
-      logger.info '== Sprockets will render css with SassC'
-    elsif defined?(::SassC)
-      require 'sprockets/sassc_processor'
-      environment.register_transformer 'text/sass', 'text/css', ::Sprockets::SasscProcessor.new
-      environment.register_transformer 'text/scss', 'text/css', ::Sprockets::ScsscProcessor.new
-
-      logger.info '== Sprockets will render css with SassC'
+  private
+    def use_sassc_if_available
+      if try_require('sassc-rails') && defined?(::SassC::Rails)
+        environment.register_engine '.sass', ::Sprockets::SassC::SassProcessor
+        environment.register_engine '.scss', ::Sprockets::SassC::ScssProcessor
+        logger.info '== Sprockets will render css with SassC'
+      elsif try_require('sprockets/sassc_processor') && defined?(::SassC)
+        environment.register_transformer 'text/sass', 'text/css', ::Sprockets::SasscProcessor.new
+        environment.register_transformer 'text/scss', 'text/css', ::Sprockets::ScsscProcessor.new
+        logger.info '== Sprockets will render css with SassC'
+      else
+        logger.info "== Sprockets will render css with ruby sass\n" \
+                        '   consider using Sprockets 4.x to render with SassC'
+      end
     end
-  rescue LoadError
-    logger.info "== Sprockets will render css with ruby sass\n" \
-                      '   consider using Sprockets 4.x to render with SassC'
-  end
+
+    def try_require script
+      begin
+        require script
+        true
+      rescue LoadError
+        false
+      end
+    end
 end
