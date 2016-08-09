@@ -22,6 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'sassc', ['>= 1.7', '< 2']
   spec.add_runtime_dependency 'sassc-rails', ['>= 1.1', '< 2']
   spec.add_runtime_dependency 'middleman-core', '~> 4'
-  spec.add_runtime_dependency 'middleman-sprockets', ['>= 4.0.0.rc.2', '< 5']
+  spec.add_runtime_dependency 'middleman-sprockets', ['>= 4.0.0', '< 5']
   spec.add_runtime_dependency 'sprockets', '~> 3'
 end
