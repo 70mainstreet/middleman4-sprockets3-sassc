@@ -7,7 +7,7 @@ or with Sprockets 4 will support SassC out of box.)
 
 In `Gemfile`:
 ```ruby
-gem 'middleman4-sprockets3-sassc', '~> 0.0.1'
+gem 'middleman4-sprockets3-sassc', '~> 0.0.4'
 ```
 
 In `config.rb`:
